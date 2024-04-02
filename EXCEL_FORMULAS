@@ -1,0 +1,286 @@
+
+=SE(
+TIPO_PEDIDO="TODOS";
+SE(
+EMPRESA="GERAL";
+SE(
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+)=0;
+NÃO.DISP();
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+));
+SE(
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+SE(
+Tabela_PEDIDOS2[EMPRESA]=EMPRESA;
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+))=0;
+NÃO.DISP();
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+SE(
+Tabela_PEDIDOS2[EMPRESA]=EMPRESA;
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+)
+)
+));
+SE(
+EMPRESA="GERAL";
+SE(
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+SE(
+Tabela_PEDIDOS2[TIPO_PEDIDOS]=TIPO_PEDIDO;
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+))=0;
+NÃO.DISP();
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+SE(
+Tabela_PEDIDOS2[TIPO_PEDIDOS]=TIPO_PEDIDO;
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+)
+));
+SE(
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+SE(
+Tabela_PEDIDOS2[TIPO_PEDIDOS]=TIPO_PEDIDO;
+SE(
+Tabela_PEDIDOS2[EMPRESA]=EMPRESA;
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+)
+))=0;
+NÃO.DISP();
+SOMA(
+SE(Tabela_PEDIDOS2[DIA_SEMANA]=[@DIA SEMANA];
+SE(
+ANO(Tabela_PEDIDOS2[PEDDTEMIS])=ANO(HOJE())-1;
+SE(
+MÊS(Tabela_PEDIDOS2[PEDDTEMIS])=MÊS(HOJE());
+SE(
+Tabela_PEDIDOS2[TIPO_PEDIDOS]=TIPO_PEDIDO;
+SE(
+Tabela_PEDIDOS2[EMPRESA]=EMPRESA;
+Tabela_PEDIDOS2[QTD_PEDIDOS]
+)
+)
+)
+)
+)
+)
+)
+)
+)
+
+#############
+
+=SE(EMPRESA="GERAL";SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];Tabela_PEDIDOS[QTD_PEDIDOS]))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];Tabela_PEDIDOS[QTD_PEDIDOS])));
+SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS])))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS]))))
+)
+
+
+=SE(EMPRESA="GERAL";
+
+SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;Tabela_PEDIDOS[QTD_PEDIDOS])))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;Tabela_PEDIDOS[QTD_PEDIDOS]))));
+
+SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS]))))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS]))))))
+)
+
+
+=SE(TIPO_PEDIDO="TODOS";
+
+SE(EMPRESA="GERAL";
+
+SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];Tabela_PEDIDOS[QTD_PEDIDOS]))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];Tabela_PEDIDOS[QTD_PEDIDOS])));
+
+SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS])))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS]))))
+);
+
+SE(EMPRESA="GERAL";
+
+SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;Tabela_PEDIDOS[QTD_PEDIDOS])))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;Tabela_PEDIDOS[QTD_PEDIDOS]))));
+
+SE(SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS]))))=0;NÃO.DISP();SOMA(SE(Tabela_PEDIDOS[PEDDTEMIS]=[@DATA];SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;SE(Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;SE(Tabela_PEDIDOS[EMPRESA]=EMPRESA;Tabela_PEDIDOS[QTD_PEDIDOS]))))))
+)
+
+)
+
+##
+
+=SE(
+    TIPO_PEDIDO="TODOS";
+    SE(
+        EMPRESA="GERAL";
+        SE(
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        Tabela_PEDIDOS[QTD]
+                    )
+                )
+            )=0;
+            NÃO.DISP();
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        Tabela_PEDIDOS[QTD]
+                    )
+                )
+            )
+        );
+        SE(
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        SE(
+                            Tabela_PEDIDOS[EMPRESA]=EMPRESA;
+                            Tabela_PEDIDOS[QTD]
+                        )
+                    )
+                )
+            )=0;
+            NÃO.DISP();
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        SE(
+                            Tabela_PEDIDOS[EMPRESA]=EMPRESA;
+                            Tabela_PEDIDOS[QTD]
+                        )
+                    )
+                )
+            )
+        )
+    );
+    SE(
+        EMPRESA="GERAL";
+        SE(
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        SE(
+                            Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;
+                            Tabela_PEDIDOS[QTD]
+                        )
+                    )
+                )
+            )=0;
+            NÃO.DISP();
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        SE(
+                            Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;
+                            Tabela_PEDIDOS[QTD]
+                        )
+                    )
+                )
+            )
+        );
+        SE(
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        SE(
+                            Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;
+                            SE(
+                                Tabela_PEDIDOS[EMPRESA]=EMPRESA;
+                                Tabela_PEDIDOS[QTD]
+                            )
+                        )
+                    )
+                )
+            )=0;
+            NÃO.DISP();
+            SOMA(
+                SE(
+                    Tabela_PEDIDOS[PEDDTEMIS]=[@DATA3];
+                    SE(
+                        Tabela_PEDIDOS[LENTES]=1;
+                        SE(
+                            Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;
+                            SE(
+                                Tabela_PEDIDOS[TIPO_PEDIDOS]=TIPO_PEDIDO;
+                                SE(
+                                    Tabela_PEDIDOS[EMPRESA]=EMPRESA;
+                                    Tabela_PEDIDOS[QTD]
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        )
+    )
+)
+
+
