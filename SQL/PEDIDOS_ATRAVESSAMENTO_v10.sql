@@ -3,19 +3,28 @@
 EXECUTE BLOCK RETURNS (ID_PEDIDO INTEGER, 
                         EMPRESA VARCHAR(70), 
                          DATE_REF DATE, 
-                          TIPO_PEDIDOS VARCHAR(50), 
-                           VRVENDA NUMERIC)
+                          DIA_SEMANA VARCHAR(70),
+                           WEEK_NUMBER INTEGER,
+                            ANO INTEGER,
+                             MES INTEGER,
+                              TIPO_PEDIDOS VARCHAR(50), 
+                               VRVENDA NUMERIC)
 
 AS
 DECLARE VARIABLE i INTEGER;
 DECLARE VARIABLE num_days INTEGER;
+DECLARE VARIABLE start_date DATE;
+DECLARE VARIABLE end_date DATE;
 
 
 BEGIN
 
-  num_days = DATEDIFF(DAY, DATEADD(-EXTRACT(DAY FROM CURRENT_DATE) + 1 DAY TO CURRENT_DATE-1), 
-  DATEADD(-1 DAY TO CURRENT_DATE));
-  
+ -- Calculate the start and end date for the current month last year
+  start_date ='2023-06-01';
+  end_date = '2023-06-30';
+
+  -- Calculate the number of days in the current month last year
+  num_days = DATEDIFF(DAY, start_date, end_date); 
   i = 0;
   
   ----------------------- START LOOP
@@ -24,8 +33,20 @@ BEGIN
     FOR 
     
       SELECT P.ID_PEDIDO,
-              TRIM(REPLACE(EMPNOMEFNT,'REPRO -','')) AS EMPRESA,
-               DATEADD(-:i DAY TO CURRENT_DATE) AS DATE_REF,
+               TRIM(REPLACE(EMPNOMEFNT,'REPRO -','')) AS EMPRESA,
+               DATEADD(:i DAY TO :start_date) AS DATE_REF,
+               CASE EXTRACT(WEEKDAY FROM DATEADD(:i DAY TO :start_date))
+        WHEN 0 THEN 'DOM'
+        WHEN 1 THEN 'SEG'
+        WHEN 2 THEN 'TER'
+        WHEN 3 THEN 'QUA'
+        WHEN 4 THEN 'QUI'
+        WHEN 5 THEN 'SEX'
+        WHEN 6 THEN 'SAB'
+    END AS DIA_SEMANA,
+    EXTRACT(WEEK FROM DATEADD(:i DAY TO :start_date)) AS WEEK_NUMBER,
+    EXTRACT(YEAR FROM DATEADD(:i DAY TO :start_date)) ANO,
+     EXTRACT(MONTH FROM DATEADD(:i DAY TO :start_date))MES,
        CASE 
         WHEN P.TPCODIGO IN (6) THEN 'ATACADÃO'
          WHEN P.TPCODIGO IN (11) AND LEFT(CHAVE,2) IN ('LA','LS') THEN 'ATACADO 11 LA'
@@ -59,7 +80,7 @@ BEGIN
       
       PEDSITPED<>'C' AND
       
-      PEDDTEMIS BETWEEN '2024-03-01' AND DATEADD(-:i DAY TO CURRENT_DATE) AND
+      PEDDTEMIS BETWEEN '2023-03-01' AND  DATEADD(:i DAY TO :start_date) AND
       
       ---------------------------------------------- ANTI JOIN 
       
@@ -80,16 +101,26 @@ BEGIN
          
          PEDSITPED<>'C' AND
          
-         PEDDTBAIXA BETWEEN '2024-03-01' AND DATEADD(-:i DAY TO CURRENT_DATE)AND PEDDTEMIS BETWEEN '2024-03-01' AND DATEADD(-:i DAY TO CURRENT_DATE)
+         PEDDTBAIXA BETWEEN '2023-03-01' AND DATEADD(:i DAY TO :start_date) AND PEDDTEMIS BETWEEN '2023-03-01' AND DATEADD(:i DAY TO :start_date)
       )
       
       -------------------------------------------- END ANTI JOIN
       
-      GROUP BY P.ID_PEDIDO,EMPRESA,DATEADD(-:i DAY TO CURRENT_DATE),TIPO_PEDIDOS
+      GROUP BY P.ID_PEDIDO,
+                EMPRESA,
+                 DATE_REF,
+                  DIA_SEMANA,
+                   WEEK_NUMBER,
+                    ANO,
+                     MES,
+                      TIPO_PEDIDOS
       
-    INTO :ID_PEDIDO,:EMPRESA, :DATE_REF, :TIPO_PEDIDOS, :VRVENDA
+    INTO :ID_PEDIDO,:EMPRESA, :DATE_REF,:DIA_SEMANA,:WEEK_NUMBER,:ANO,:MES,:TIPO_PEDIDOS, :VRVENDA
     DO
       SUSPEND;
+      
+      
+      
 
     i = i + 1;
   END
